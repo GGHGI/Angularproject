@@ -1,0 +1,37 @@
+<app-barrederecherche> </app-barrederecherche>
+
+<div class="container">
+  <div class="row">
+    <div *ngFor="let pokemon of pokemonList" class="col m4 s6">
+      <div
+        (click)="goToPokemon(pokemon)"
+        class="card horizonal"
+        click="selectPokemon"
+        appBorderCard
+      >
+        <div class="card-image"><img [src]="pokemon.image" /></div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <strong
+              ><p class="nom">
+                {{ pokemon.name }}
+              </p></strong
+            >
+            <p>
+              <!-- <small>{{
+                pokemon.created | date : "dd/MM/yyyy" | uppercase
+              }}</small> -->
+              <!-- <span
+                *ngFor="let type of pokemon.types"
+                class="{{ type | pokemonTypeColor }}"
+              >
+                {{ type }}
+              </span> -->
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- faire deux commande pour generate -->

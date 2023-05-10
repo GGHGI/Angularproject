@@ -1,0 +1,73 @@
+<div *ngIf="pokemon" class="row">
+  <div class="col s12 m8 offset-m2">
+    <h2 class="header center">{{ pokemon.name }}</h2>
+    <div class="card horizontal hoverable">
+      <div class="card-image">
+        <img [src]="pokemon.image" />
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <table class="bordered striped tableau">
+            <tbody>
+              <tr>
+                <td>Nom</td>
+                <td>
+                  <strong>{{ pokemon.name }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Vitesse</td>
+                <td>
+                  <strong>{{ pokemon.stats.speed }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Dégâts</td>
+                <td>
+                  <strong>{{ pokemon.stats.attack }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Attaque spéciale</td>
+                <td>
+                  <strong>{{ pokemon.stats.special_attack }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Défense spéciale</td>
+                <td>
+                  <strong>{{ pokemon.stats.special_defense }}</strong>
+                </td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <!-- <td>Evolution</td>
+                <td>
+                  <strong>{{
+                    pokemon.stats.apiEvolutions?.name || "N/A"
+                  }}</strong>
+                </td>
+              </tr> -->
+              </tr>
+
+              <tr>
+                <!-- <td>Types</td> -->
+                <td>
+                  <!-- <span
+                    *ngFor="let type of pokemon.stats."
+                    class="{{ type | pokemonTypeColor }}"
+                    >{{ type }}</span
+                  > -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-action">
+          <a (click)="goToPokemonList()">Retour</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<h4 *ngIf="!pokemon" class="center">Aucun pokémon à afficher !</h4>

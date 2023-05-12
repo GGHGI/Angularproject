@@ -1,0 +1,33 @@
+<!-- <input
+  type="text"
+  [(ngModel)]="searchTerm"
+  (keyup.enter)="onSearch()"
+  placeholder="Rechercher..."
+/>
+<ul>
+  <li *ngFor="let pokemon of searchResults">
+    {{ pokemon.name }}
+  </li>
+</ul> -->
+
+<div class="row">
+  <div class="col-sm-12">
+    <form class="form-inline">
+      <input
+        #searchBox
+        type="text"
+        placeholder="Rechercher un pokemon"
+        aria-label="Rechercher"
+        (input)="search(searchBox?.value ?? '')"
+      />
+      <ul>
+        <li
+          *ngFor="let pokemon of pokemons$ | async"
+          (click)="goToDetail(pokemon)"
+        >
+          {{ pokemon.name }}
+        </li>
+      </ul>
+    </form>
+  </div>
+</div>

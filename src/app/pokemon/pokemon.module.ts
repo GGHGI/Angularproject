@@ -6,7 +6,8 @@ import { ListPokemonComponent } from "./list-pokemon/list-pokemon.component";
 import { DetailPokemonComponent } from "./detail-pokemon/detail-pokemon.component";
 import { BorderCardDirective } from "./border-card.directive";
 import { PokemonTypeColorPipe } from "./pokemon-type-color.pipe";
-import { BarrederechercheComponent } from "../barrederecherche/barrederecherche.component";
+import { BarrederechercheComponent } from "./barrederecherche/barrederecherche.component";
+import { LoaderComponent } from "./loader/loader.component";
 
 const pokemonRoutes: Routes = [
   { path: "pokemons", component: ListPokemonComponent },
@@ -20,6 +21,7 @@ const pokemonRoutes: Routes = [
     BorderCardDirective,
     PokemonTypeColorPipe,
     BarrederechercheComponent,
+    LoaderComponent,
   ],
   imports: [CommonModule, FormsModule, RouterModule.forChild(pokemonRoutes)],
 })

@@ -1,7 +1,7 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Pokemon } from "./pokemon/pokemon";
 import { Injectable } from "@angular/core";
-import { catchError, Observable, of, tap } from "rxjs";
+import { catchError, Observable, of, tap, map } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -11,7 +11,7 @@ export class PokemonService {
 
   getPokemonList(): Observable<Pokemon[]> {
     return this.http
-      .get<Pokemon[]>(`https://pokebuildapi.fr/api/v1/pokemon`)
+      .get<Pokemon[]>(`https://pokebuildapi.fr/api/v1/pokemon/limit/100`)
       .pipe(
         tap((pokemonList) => console.table(pokemonList)),
         catchError((error) => {
@@ -37,12 +37,15 @@ export class PokemonService {
     if (searchTerm.length <= 3) {
       return of([]);
     }
+
     return this.http
-      .get<Pokemon[]>(
-        `https://pokebuildapi.fr/api/v1/pokemon?name=${searchTerm}`
-      )
+      .get<Pokemon[]>("https://pokebuildapi.fr/api/v1/pokemon/limit/100")
       .pipe(
-        tap((results) => console.table(results)),
+        map((results) =>
+          results.filter((pokemon) =>
+            pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+        ),
         catchError((error) => {
           console.log(error);
           return of([]);
@@ -50,19 +53,38 @@ export class PokemonService {
       );
   }
 
-  getPokemonTypeList(): string[] {
-    return [
-      "Plante",
-      "Feu",
-      "Eau",
-      "Insecte",
-      "Normal",
-      "Electrik",
-      "Poison",
-      "Fée",
-      "Vol",
-      "Combat",
-      "Psy",
-    ];
-  }
+  //CODE ANCIEN
+
+  // searchPokemon(searchTerm: string): Observable<Pokemon[]> {
+  //   if (searchTerm.length <= 3) {
+  //     return of([]);
+  //   }
+  //   return this.http
+  //     .get<Pokemon[]>(
+  //       `https://pokebuildapi.fr/api/v1/pokemon?name=${searchTerm}`
+  //     )
+  //     .pipe(
+  //       tap((results) => console.table(results)),
+  //       catchError((error) => {
+  //         console.log(error);
+  //         return of([]);
+  //       })
+  //     );
+  // }
+
+  // getPokemonTypeList(): string[] {
+  //   return [
+  //     "Plante",
+  //     "Feu",
+  //     "Eau",
+  //     "Insecte",
+  //     "Normal",
+  //     "Electrik",
+  //     "Poison",
+  //     "Fée",
+  //     "Vol",
+  //     "Combat",
+  //     "Psy",
+  //   ];
+  // }
 }

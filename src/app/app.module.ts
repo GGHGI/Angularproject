@@ -7,9 +7,10 @@ import { PageNoFoundComponent } from "./page-no-found/page-no-found.component";
 import { RouterModule } from "@angular/router";
 import { PokemonModule } from "./pokemon/pokemon.module";
 import { FormsModule } from "@angular/forms";
+import { UserComponent } from './user/user.component';
 
 @NgModule({
-  declarations: [AppComponent, PageNoFoundComponent],
+  declarations: [AppComponent, PageNoFoundComponent, UserComponent],
   imports: [
     BrowserModule,
     RouterModule,
